@@ -4,3 +4,4 @@ config.py
 .csv
 compile_df.csv
 *bp_jsons*
+*test_csvs*

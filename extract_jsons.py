@@ -1,4 +1,4 @@
-import json, os
+import json, os, time
 import platform, subprocess
 import pandas as pd
 from pandas.io.json import json_normalize
@@ -18,15 +18,19 @@ def execute_bash(command):
 def extract_jsons():
     for bp in bps_lst:
         call = "cleos -u http://api.proxy1a.sheos.org get actions {} 0,0, 10000 -j > ".format(bp) + "bp_jsons/{}.json".format(bp)
-        #call = "cleos -u https://lb1.sheos.org get actions {} -j > ".format(bp) + "bp_jsons/{}.json".format(bp)
+
+        #without full list
+        #call = "cleos -u http://api.proxy1a.sheos.org get actions {} -j > ".format(bp) + "bp_jsons/{}.json".format(bp)
 
         print ('extracting {}...'.format(bp))
         execute_bash(call)
+        #time.sleep(60)
         print ('[DONE]'.format(bp))
 
 
     outter_df = pd.DataFrame()
     for bp_json in bp_jsons_lst:
+
         with open(bp_json) as f:
             data  = json.load(f)
         data_df = json_normalize(data, [['actions']],errors='ignore')
