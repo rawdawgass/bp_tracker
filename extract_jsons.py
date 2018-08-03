@@ -17,14 +17,14 @@ def execute_bash(command):
 #get most outter
 def extract_jsons():
     for bp in bps_lst:
-        call = "cleos -u http://api.proxy1a.sheos.org get actions {} 0,0, 10000 -j > ".format(bp) + "bp_jsons/{}.json".format(bp)
+        #call = "cleos -u http://api.proxy1a.sheos.org get actions {} 0,0, 10000 -j > ".format(bp) + "bp_jsons/{}.json".format(bp)
 
         #without full list
-        #call = "cleos -u http://api.proxy1a.sheos.org get actions {} -j > ".format(bp) + "bp_jsons/{}.json".format(bp)
+        call = "cleos -u http://api.proxy1a.sheos.org get actions {} -j > ".format(bp) + "bp_jsons/{}.json".format(bp)
 
         print ('extracting {}...'.format(bp))
         execute_bash(call)
-        #time.sleep(60)
+        time.sleep(60)
         print ('[DONE]'.format(bp))
 
 
@@ -127,5 +127,4 @@ def compile_actions():
 
 
     compile_df.to_csv('compile_df.csv', index=False)
-    #compile_df.to_excel('compile_df.xlsx', index=False)
     print ('Compiled!')

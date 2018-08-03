@@ -11,7 +11,7 @@ bp_key_tbl = Airtable(config.base_key, config.bp_key, api_key=config.api_key)
 #print (bp_key_tbl.match('Name','eosfishrocks').get('id'))
 
 def get_airtable():
-    bp_actions_df = json_normalize(bp_actions_tbl.get_all(view='Grid view'))
+    bp_actions_df = json_normalize(bp_actions_tbl.get_all(view='DO NOT TOUCH'))
     #rename cols remove airtables addition
     bp_actions_df.columns = [x.replace('fields.','') for x in bp_actions_df.columns]
     #bp_actions_df.to_csv('at_df.csv', index=False)
